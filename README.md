@@ -41,3 +41,41 @@ Error: ENOENT: no such file or directory, open 'C:\Users\lucas\Documents\Cours\2
 
 ```
 ### 5/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```made with ChatGPT```
