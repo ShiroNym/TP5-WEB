@@ -5,8 +5,6 @@ const port = 8000;
 
 import fs from "node:fs/promises";
 
-
-
 async function requestListener(_request, response) {
   try {
     const contents = await fs.readFile("index.html", "utf8");
@@ -16,12 +14,13 @@ async function requestListener(_request, response) {
   } catch (error) {
     response.writeHead(500, { "Content-Type": "text/plain" });
     response.end("Erreur interne du serveur : index.html introuvable");
+    console.log(error)
   }
 }
-
-
 
 const server = http.createServer(requestListener);
 server.listen(port, host, () => {
   console.log(`Server is running on http://${host}:${port}`);
 });
+
+console.log("NODE_ENV =", process.env.NODE_ENV);
