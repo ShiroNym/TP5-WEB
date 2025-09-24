@@ -13,18 +13,18 @@ En-tête de réponse :
 ---
 
 ### 1.2/ Donner la liste des en-têtes qui ont changé depuis la version précédente.
-<code style="color : cyan">En bleu les nouveau element</code><br>
+${\color{cyan}En \space bleu \space les \space nouveau \space element}$<br>
 
 
 En-tête de réponse : 
 - connection : keep-alive
-- <code style="color : cyan">content-length : 20</code>
-- <code style="color : cyan">content-type : application/json</code>
+- ${\color{cyan}content-length : 20}$
+- ${\color{cyan}content-type : application/json}$
 - date : Fri, 19 Sep 2025 22:50:27 GMT
 - keep-alive : timeout=5
 
-<code style="color : red">En rouge les element supprimer</code>
-- <code style="color : red">transfer-encoding : chunked</code>
+${\color{red}En \space rouge \space les \space element  \space supprimer}$
+- ${\color{red}transfer-encoding : chunked}$
 
 
 
@@ -41,7 +41,7 @@ La console affiche :
 ```txt
 Error: ENOENT: no such file or directory, open 'C:\Users\lucas\Documents\Cours\2025\Semestre_4\Web_2\TP\TP5-WEB\xindex.html'
     at async open (node:internal/fs/promises:641:25)
-    at async Object.readFile (node:internal/fs/promises:1245:14) {
+    at async Object.readFile (node:internal/fs/promises:1245:14) 
   errno: -4058,
   code: 'ENOENT',
   syscall: 'open',
@@ -50,6 +50,19 @@ Error: ENOENT: no such file or directory, open 'C:\Users\lucas\Documents\Cours\2
 ```
 ### 1.5/ Donner le code de requestListener() modifié avec gestion d’erreur en async/await.
 
+```mjs
+async function requestListener(_request, response) {
+  try {
+    const contents = await fs.readFile("index.html", "utf8");
+    response.setHeader("Content-Type", "text/html");
+    response.writeHead(200);
+    response.end(contents);
+  } catch (error) {
+    response.writeHead(500, { "Content-Type": "text/plain" });
+    response.end("Erreur interne du serveur : index.html introuvable");
+  }
+}
+```
 
 ---
 
@@ -100,20 +113,71 @@ En mode développent le serveur s'actualise à chaque sauvegarde d'un ficher con
 
 
 ### 2.3/ Lister les en-têtes des réponses fournies par Express. Lesquelles sont nouvelles par rapport au serveur HTTP ?
-<code style="color : cyan">En bleu les nouveau element</code><br>
+${\color{cyan} En \space bleu \space les \space nouveau \space element}$
 
-- <code style="color : cyan">accept-ranges : bytes</code><br>
-- <code style="color : cyan">cache-control : public, max-age=0</code><br>
+- ${\color{cyan}accept-ranges : bytes}$
+- ${\color{cyan}cache-control : public, max-age=0}$
 - connection : keep-alive
 - content-length : 196
 - content-type : text/html; charset=utf-8
 - date : Tue, 23 Sep 2025 23:01:45 GMT
-- <code style="color : cyan">etag : W/"c4-1996e493bf9"</code><br>
+- ${\color{cyan}etag : W/"c4-1996e493bf9}$ 
 - keep-alive : timeout=5
-- <code style="color : cyan">last-modified : Sun, 21 Sep 2025 21:58:37 GMT</code><br>
-- <code style="color : cyan">powered-by : Express</code><br>
+- ${\color{cyan}last-modified : Sun, 21 Sep 2025 21:58:37 GMT}$ 
+- ${\color{cyan}powered-by : Express}$
 
 ### 2.4/ Quand l’événement listening est-il déclenché ?
 La fonction Express app.listen() permet démarrer un serveur et de le faire écouter les requêtes entrantes.
 
 Une fois le port et l'hôte connecte et ouvert la fonction envois l'évènement listening qui est capter par server.on qui va afficher les info dans la console du terminal.
+
+---
+
+### 2.5/ Indiquer quelle est l’option (activée par défaut) qui redirige / vers /index.html ?
+
+app.use(express.static("static"))  prend en option static qui est le nom du dossier ou se situe tout les fichier pouvant être afficher sur le client (passent le nom du fichier en tant que chemin dans la bar de recherche).
+
+Si le chemin est "/" alors le fichier nommée index.html situer dans le dossier choisi sera charger par défaut.
+
+---
+
+### 2.6/ Visiter la page d’accueil puis rafraichir (Ctrl+R) et ensuite forcer le rafraichissement (Ctrl+Shift+R). Quels sont les codes HTTP sur le fichier style.css ? Justifier.
+
+| Action                                  |code|
+|-----------------------------------------|---|
+|Visite normal                            |200|
+|rafraichir (Ctrl+R)                      |304|
+|forcer le rafraichissement (Ctrl+Shift+R)|200|
+
+Lors de la visite le site charge et le navigateur garde la mise en page en cache.
+
+Le rafraîchissement (normal) recharge le site grâce au cache sans demander une nouvelle requête au serveur (304 Not Modified).
+
+Enfin le rafraichissement force recharge la page en ne passent pas par le cache d’où le code 200.
+
+
+---
+
+
+### 2.7 Vérifier que l’affichage change bien entre le mode production et le mode development.
+
+**Mode development :**
+
+Terminal : 
+
+![IMG-Clien-md_dev](Image\Term-Md_Dev.png)
+
+Client : 
+
+![IMG-Clien-md_dev](Image\Client-Md_Dev.png)
+
+
+**Mode production :**
+
+Terminal : 
+
+![IMG-Clien-md_dev](Image\Term-Md_Prod.png)
+
+Client : 
+
+![IMG-Clien-md_dev](Image\Client-Md_Prod.png)

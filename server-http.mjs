@@ -7,7 +7,7 @@ import fs from "node:fs/promises";
 
 async function requestListener(request, response) {
   response.setHeader("Content-Type", "text/html");
-  const urlParts = request.url.split("/").filter(Boolean); // enlève les vides
+  const urlParts = request.url.split("/").filter(Boolean);
   const route = urlParts[0] || "index.html";
 
   switch (route) {
