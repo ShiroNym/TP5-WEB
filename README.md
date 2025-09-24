@@ -165,19 +165,19 @@ Enfin le rafraichissement force recharge la page en ne passent pas par le cache 
 
 Terminal : 
 
-![IMG-Clien-md_dev](.\Image\Term-Md_Dev.png)
+![IMG-Clien-md_dev](https://github.com/ShiroNym/TP5-WEB/blob/main/Image/Term-Md_Dev.png)
 
 Client : 
 
-![IMG-Clien-md_dev](.\Image\Client-Md_Dev.png)
+![IMG-Clien-md_dev](https://github.com/ShiroNym/TP5-WEB/blob/main/Image/Client-Md_Dev.png)
 
 
 **Mode production :**
 
 Terminal : 
 
-![IMG-Clien-md_dev](.\Image\Term-Md_Prod.png)
+![IMG-Clien-md_dev](https://github.com/ShiroNym/TP5-WEB/blob/main/Image/Term-Md_Prod.png)
 
 Client : 
 
-![IMG-Clien-md_dev](.\Image\Client-Md_Prod.png)
+![IMG-Clien-md_dev](https://github.com/ShiroNym/TP5-WEB/blob/main/Image/Client-Md_Prod.png)
