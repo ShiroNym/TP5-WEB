@@ -8,7 +8,7 @@ import logger from "loglevel";
 
 const host = "localhost";
 const port = 8000;
-logger.setLevel(logger.levels.WARN); // Niveau de verbosité modifiable
+logger.setLevel(logger.levels.WARN);
 
 
 const app = express();
